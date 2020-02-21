@@ -22,6 +22,7 @@
     "url": "https://github.com/aestheticbookshelf/testapp.git"
   },
   "dependencies": {
+    "@aestheticbookshelf/confutils": "^1.0.6",
     "@aestheticbookshelf/smartdom": "^1.0.17",
     "express": "^4.17.1"
   },
