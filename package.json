@@ -1,0 +1,37 @@
+{
+  "name": "@aestheticbookshelf/testapp",
+  "version": "1.0.1",
+  "description": "Test application.",
+  "main": "lib/testapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test",
+    "application"
+  ],
+  "author": "aestheticbookshelf",
+  "license": "MIT",
+  "homepage": "https://github.com/aestheticbookshelf/testapp",
+  "bugs": {
+    "url": "https://github.com/aestheticbookshelf/testapp/issues",
+    "email": "aestheticbookshelf@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aestheticbookshelf/testapp.git"
+  },
+  "dependencies": {
+    "@aestheticbookshelf/smartdom": "^1.0.17",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "browser-sync": "^2.26.7",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
