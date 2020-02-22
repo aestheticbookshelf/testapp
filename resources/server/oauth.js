@@ -41,7 +41,8 @@ function addLichessStrategy(app, props){
     passport.use(props.tag, new LichessStrategy({
         clientID: props.clientID,
         clientSecret: props.clientSecret,
-        callbackURL: url + "/callback"
+        callbackURL: url + "/callback",
+        scope: props.scope || ""
         },
         function(accessToken, refreshToken, profile, cb) {
             console.log(`id : ${profile.id}\naccessToken : ${accessToken}\nrefreshToken : ${refreshToken}`)
@@ -51,7 +52,7 @@ function addLichessStrategy(app, props){
     ))
 
     app.get(props.authURL,
-        passport.authenticate('lichess'))
+        passport.authenticate(props.tag))
 
     app.get(props.authURL + "/callback", 
         passport.authenticate(props.tag, { failureRedirect: prot + host + props.failureRedirect }),

@@ -21,7 +21,7 @@ const fa = cu.FirebaseAdmin({
 oauth.initOauth(app, fa.firestore)
 
 oauth.addLichessStrategy(app, {
-    tag: "lichess",
+    tag: "lichess-common",
     clientID: process.env.LICHESS_CLIENT_ID,
     clientSecret: process.env.LICHESS_CLIENT_SECRET,
     authURL: "/auth/lichess",
@@ -34,6 +34,7 @@ oauth.addLichessStrategy(app, {
     clientID: process.env.LICHESS_BOT_CLIENT_ID,
     clientSecret: process.env.LICHESS_BOT_CLIENT_SECRET,
     authURL: "/auth/lichess/bot",
+    scope: "challenge:read challenge:write bot:play",
     failureRedirect: "/?lichessbotlogin=failed",
     okRedirect: "/?lichessbotlogin=ok"
 })
