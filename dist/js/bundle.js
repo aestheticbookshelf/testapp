@@ -11,9 +11,7 @@ const DEFAULT_REDUCE_THINKING_TIME      = 1
 
 class ServerEngine_ extends chessboard.AbstractEngine{
     constructor(sendanalysisinfo, stockfishPath){
-        super(sendanalysisinfo)
-
-        this.stockfishPath = stockfishPath
+        super(sendanalysisinfo, stockfishPath)    
     }
 
     processstdout(data){
@@ -48,9 +46,7 @@ function ServerEngine(sendanalysisinfo, stockfishPath){return new ServerEngine_(
 
 class LocalEngine_ extends chessboard.AbstractEngine{
     constructor(sendanalysisinfo, stockfishPath){
-        super(sendanalysisinfo)
-
-        this.stockfishPath = stockfishPath
+        super(sendanalysisinfo, stockfishPath)    
     }
 
     spawnengineprocess(){
@@ -84,9 +80,9 @@ class LichessBotGame_{
         this.id = props.id        
 
         this.engine = IS_BROWSER ?
-            LocalEngine(() => {}, props.stockfishPath)
+            LocalEngine(() => {}, this.parentBot.props.stockfishPath)
         :
-            ServerEngine(() => {}, props.stockfishPath)
+            ServerEngine(() => {}, this.parentBot.props.stockfishPath)
 
         this.ratingDiff = 0
 
@@ -266,7 +262,7 @@ class LichessBotGame_{
                 let scorenumerical = moveObj.scorenumerical
                 msg += ` Score numerical cp : ${scorenumerical} .`                
                 if(this.moves && this.moves.length > 40){
-                    if(ratingDiff > -200){
+                    if(this.ratingDiff > -200){
                         if(scorenumerical == 0){
                             offeringDraw = true
                         }
@@ -3075,9 +3071,13 @@ class AbstractEngine{
     }
   }
 
-  constructor(sendanalysisinfo){      
+  constructor(sendanalysisinfo, stockfishPath){      
       this.sendanalysisinfo = sendanalysisinfo
+	  
+	  this.stockfishPath = stockfishPath
 
+      console.log("created engine", this)
+	  
       this.spawn()
 
       setInterval(this.checkcommand.bind(this), 200)
