@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const cu = require('@aestheticbookshelf/confutils')
 
-const oauth = require('./oauth')
+const oauth = require('@aestheticbookshelf/oauth')
 
 const app = express()
 
