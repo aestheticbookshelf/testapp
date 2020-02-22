@@ -4,6 +4,8 @@ const cu = require('@aestheticbookshelf/confutils')
 
 const oauth = require('@aestheticbookshelf/oauth')
 
+const { LichessBot } = require('@aestheticbookshelf/lichessbot')
+
 const app = express()
 
 const PORT = process.env.PORT || 3000
@@ -38,6 +40,20 @@ oauth.addLichessStrategy(app, {
     failureRedirect: "/?lichessbotlogin=failed",
     okRedirect: "/?lichessbotlogin=ok"
 })
+
+if(process.env.ALLOW_BOT){
+    let b = LichessBot({
+        userId: process.env.BOT_ID,
+        token: process.env.BOT_TOKEN,
+        stockfishPath: path.join(__rootdirname, "resources/server/bin/stockfish"),
+        acceptVariant: process.env.BOT_ACCEPT_VARIANT || "standard",
+        minInitialClock: 15
+    })
+
+    console.log(b)
+
+    b.stream()
+}
 
 app.get('/', (req, res) => res.send(`
 <!DOCTYPE html>
